@@ -4,7 +4,7 @@ defined('ROOT') || define('ROOT', realpath(__DIR__.'/../'));
 defined('SRC') || define('SRC', ROOT.'/src');
 defined('APP') || define('APP', 'Tori');
 
-defined('VERSION') || define('VERSION', '0.1');
+defined('VERSION') || define('VERSION', '0.2');
 
 
 $found_file = false;

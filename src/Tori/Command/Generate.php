@@ -150,7 +150,7 @@ class Generate extends Command
             // ユニットテスト時は書き換えを行わない
             if (defined('TEST')) return false;
 
-            $app_path = SRC.'/Tori/Console/ToriApplication.php';
+            $app_path = SRC.'/Tori/Console/ToriApp.php';
             $app = file_get_contents($app_path);
             $app = str_replace('/* Tori Commands List */', $replace_text, $app);
 

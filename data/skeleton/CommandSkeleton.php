@@ -20,21 +20,19 @@ class ${name} extends Command
         $this->setName('${c_name}')
             ->setDescription('コマンドの概要');
 
-        /* 引数の記載
-        $this->addArgument(
+        // 引数の記載
+        /*$this->addArgument(
             'argument_name',
             InputArgument::REQUIRED,
             '引数の説明'
-        );
-        */
+        );*/
 
-        /* オプションの記載
-        $this->addOption(
+        // オプションの記載
+        /*$this->addOption(
             'option_name',
             null,
             InputerOption::VALUE_REQUIRED
-        );
-        */
+        );*/
     }
 
 

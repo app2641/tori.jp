@@ -19,11 +19,7 @@ class ToriApp extends Application
         parent::__construct('とりコマンド --', VERSION);
 
         $this->add(new Command\Generate());
-        //$this->add(new Command\Zip());
-        //$this->add(new Command\Unzip());
-        //$this->add(new Command\HolidayCsv());
-        //$this->add(new Command\UploadSumitomoIllustToS3());
-        //$this->add(new Command\BuildAftamaIndexXml());
+        $this->add(new Command\Compass());
         /* Tori Commands List */
     }
 }

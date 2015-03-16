@@ -27,7 +27,9 @@ bin/*
 !bin/tori
 
 build/*
-
+public_html/resources/sass/test.scss
+public_html/resources/sass/.sass-cache/*
+public_html/resources/css/test.css
 vendor/*
 
 

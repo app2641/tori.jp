@@ -65,6 +65,8 @@ class GenerateTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException                RuntimeException
+     * @expectedExceptionMessageRegExp   /既に[0-9a-zA-Z]{5}コマンドが存在しています/
      * @group generate-already-exists-command
      * @group generate
      **/
@@ -74,13 +76,14 @@ class GenerateTest extends PHPUnit_Framework_TestCase
         $this->_generateCommandName();
         file_put_contents($this->cmd_path, $this->cmd_name);
         $this->assertTrue(file_exists($this->cmd_path));
+        echo $this->cmd_path;
 
-        //$command = $this->app->find('generate');
-        //$tester  = new CommandTester($command);
-        //$tester->execute(array(
-            //'command' => $command->getName(),
-            //'command_name' => $this->cmd_name
-        //));
+        $command = $this->app->find('generate');
+        $tester  = new CommandTester($command);
+        $tester->execute(array(
+            'command' => $command->getName(),
+            'command_name' => $this->cmd_name
+        ));
     }
 
 

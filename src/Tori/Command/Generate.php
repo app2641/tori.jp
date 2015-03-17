@@ -95,8 +95,6 @@ class Generate extends Command
     {
         if (file_exists($this->c_path)) {
             throw new \RuntimeException(sprintf('既に%sコマンドは存在しています', $this->c_name));
-        } else {
-            throw new \RuntimeException($this->c_path);
         }
     }
 

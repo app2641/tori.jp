@@ -19,7 +19,7 @@ class GenerateTest extends PHPUnit_Framework_TestCase
 
      * @var string
      **/
-    private $cmd_name;
+    private $cmd_name = 'MockCommand';
 
 
     /**
@@ -27,7 +27,7 @@ class GenerateTest extends PHPUnit_Framework_TestCase
      *
      * @var string
      **/
-    private $cmd_path;
+    private $cmd_path = 'Tori/Command/MockCommand.php';
 
 
     /**
@@ -35,7 +35,7 @@ class GenerateTest extends PHPUnit_Framework_TestCase
      *
      * @var string
      **/
-    private $cmd_test_path;
+    private $cmd_test_path = 'Tori/Command/MockCommandTest.php';
 
 
     /**
@@ -45,6 +45,9 @@ class GenerateTest extends PHPUnit_Framework_TestCase
     {
         $this->app = new ToriApp();
         $this->app->add(new Generate());
+
+        $this->cmd_path = SRC.'/'.$this->cmd_path;
+        $this->cmd_test_path = ROOT.'/tests/'.$this->cmd_test_path;
     }
 
 
@@ -65,18 +68,15 @@ class GenerateTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException                RuntimeException
-     * @expectedExceptionMessageRegExp   /既に[0-9a-zA-Z]{5}コマンドが存在しています/
+     * @expectedException           RuntimeException
+     * @expectedExceptionMessage    既にMockCommandコマンドは存在しています
      * @group generate-already-exists-command
      * @group generate
      **/
     public function 指定コマンドが既に存在している場合 ()
     {
         // ランダムなクラス名でファイルを作る
-        $this->_generateCommandName();
-        file_put_contents($this->cmd_path, $this->cmd_name);
-        $this->assertTrue(file_exists($this->cmd_path));
-        echo $this->cmd_path;
+        file_put_contents($this->cmd_path, '');
 
         $command = $this->app->find('generate');
         $tester  = new CommandTester($command);
@@ -94,8 +94,6 @@ class GenerateTest extends PHPUnit_Framework_TestCase
      **/
     public function 正常な処理 ()
     {
-        $this->_generateCommandName();
-
         $command = $this->app->find('generate');
         $tester  = new CommandTester($command);
         $tester->execute(array(
@@ -108,19 +106,6 @@ class GenerateTest extends PHPUnit_Framework_TestCase
             sprintf('Generated %s command!'.PHP_EOL, $this->cmd_name),
             $tester->getDisplay()
         );
-    }
-
-
-    /**
-     * テスト用のコマンドファイル名を生成する
-     *
-     * @return void
-     **/
-    private function _generateCommandName ()
-    {
-        $this->cmd_name = ucfirst(substr(md5(uniqid()), 0, 5));
-        $this->cmd_path = sprintf(SRC.'/Tori/Command/%s.php', $this->cmd_name);
-        $this->cmd_test_path = sprintf(ROOT.'/tests/Tori/Command/%sTest.php', $this->cmd_name);
     }
 }
 

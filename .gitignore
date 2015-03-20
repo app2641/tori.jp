@@ -27,9 +27,12 @@ bin/*
 !bin/tori
 
 build/*
+public_html/resources/build/.module-cache/*
+public_html/resources/css/test.css
+public_html/resources/lib/bower/*
+!public_html/resources/lib/bower/.gitkeep
 public_html/resources/sass/test.scss
 public_html/resources/sass/.sass-cache/*
-public_html/resources/css/test.css
 src/Tori/Command/MockCommand.php
 tests/Tori/Command/MockCommandTest.php
 vendor/*

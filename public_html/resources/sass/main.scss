@@ -1,0 +1,40 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100%;
+}
+
+body {
+    height: 100%;
+
+    background-image: url('/resources/images/illust.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+
+    /* css3 */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+div#video-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background-color: red;
+    margin: auto;
+    height: 30%;
+    width: 30%;
+
+    div#video {
+        
+    }
+}
+

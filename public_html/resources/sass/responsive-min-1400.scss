@@ -1,0 +1,19 @@
+div#left-container img {
+  position: fixed;
+  top: -15%;
+  left: -10%;
+  max-height: 1000px;
+}
+
+div#center-container img {
+  width: auto;
+  max-height: 500px;
+}
+
+div#right-container img {
+  position: fixed;
+  top: -5%;
+  right: 3%;
+  max-height: 850px;
+}
+

@@ -27,6 +27,8 @@ bin/*
 !bin/tori
 
 build/*
+node_modules/*
+public_html/contents/*
 public_html/resources/build/.module-cache/*
 public_html/resources/css/test.css
 public_html/resources/lib/bower/*

@@ -8,6 +8,7 @@ App.VideoComponent = React.createClass({displayName: "VideoComponent",
 
   getInitialState: function () {
     return {
+      next_key: null,
       movies: [
         {user: null, caption: null, url: null},
         {user: null, caption: null, url: null}
@@ -23,35 +24,58 @@ App.VideoComponent = React.createClass({displayName: "VideoComponent",
     $.ajax({
       url: url,
       success: function (response) {
-        var data = JSON.parse(response);
-        var rand = this.getRandomNum();
-        var rand2 = rand;
-
-        while (rand2 == rand) {
-          rand2 = this.getRandomNum();
-        }
+        var data  = JSON.parse(response);
+        var rand  = this.getRandomNum(this.state.next_key);
+        var rand2 = this.getRandomNum(rand);
 
         this.setState({
+          next_key: rand2,
           movies: [data[rand], data[rand2]],
           movie_data: data
         });
 
-        $('video').mediaelementplayer();
+        // MediaElementPlayerの初期化
+        this.initMediaElementPlayer();
       },
       context: this
     });
   },
 
-  getRandomNum: function () {
-    return Math.floor(Math.random()* this.props.total);
+  getRandomNum: function (base_int) {
+    var rand = base_int;
+    while (rand == base_int) {
+      rand = Math.floor(Math.random()* this.props.total);
+    }
+
+    return rand;
+  },
+
+  loadNextMovie: function () {
+    var rand = this.getRandomNum(this.state.next_key);
+    var data = this.state.movie_data;
+
+    this.setState({
+        next_key: rand,
+        movies: [this.state.movies[1], data[rand]],
+        movie_data: data
+    });
+  },
+
+  initMediaElementPlayer: function() {
+    var me = this;
+
+    $('video')[0].addEventListener('loadeddata', function (){
+      this.play()
+    });
+    $('video')[0].addEventListener('ended', function () {
+      me.loadNextMovie();
+    });
   },
 
   render: function () {
     return (
-      React.createElement("video", {id: "video", controls: "controls", preload: "auto", width: "640", height: "640"}, 
-        React.createElement("source", {type: "video/mp4", src: this.state.movies[0].url}), 
-        React.createElement("source", {type: "video/mp4", src: this.state.movies[1].url})
-      )
+      React.createElement("video", {id: "video", width: "640", height: "640", controls: true, autoplay: true, 
+        type: "video/mp4", src: this.state.movies[0].url})
     );
   }
 });

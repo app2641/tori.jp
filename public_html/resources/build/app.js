@@ -1,67 +1,51 @@
 
 var App = {};
 App.VideoComponent = React.createClass({displayName: "VideoComponent",
-  propTypes: {
-    total: React.PropTypes.number.isRequired,
-    date: React.PropTypes.string.isRequired
-  },
 
   getInitialState: function () {
     return {
-      next_key: null,
-      movies: [
-        {user: null, caption: null, url: null},
-        {user: null, caption: null, url: null}
-      ],
+      total: 0,
+      movie: {user: null, caption: null, url: null},
       movie_data: null
     };
   },
 
   componentDidMount: function () {
-    var dates = this.props.date.split('-');
-    var url = "/contents/"+dates[0]+"/"+dates[1]+"/"+dates[2]+"/movies.json";
 
     $.ajax({
-      url: url,
+      url: '/contents/movies.json',
       success: function (response) {
         var data  = JSON.parse(response);
-        var rand  = this.getRandomNum(this.state.next_key);
-        var rand2 = this.getRandomNum(rand);
+        var rand = this.getRandomNum(data.total);
 
         this.setState({
-          next_key: rand2,
-          movies: [data[rand], data[rand2]],
-          movie_data: data
+          total: data.total,
+          movie: data.movies[rand],
+          movie_data: data.movies
         });
 
-        // MediaElementPlayerの初期化
-        this.initMediaElementPlayer();
+        // プレイヤーの初期化
+        this.initPlayer();
       },
       context: this
     });
   },
 
-  getRandomNum: function (base_int) {
-    var rand = base_int;
-    while (rand == base_int) {
-      rand = Math.floor(Math.random()* this.props.total);
-    }
-
-    return rand;
+  getRandomNum: function (total) {
+    return Math.floor(Math.random()* total);
   },
 
   loadNextMovie: function () {
-    var rand = this.getRandomNum(this.state.next_key);
-    var data = this.state.movie_data;
+    var rand = this.getRandomNum(this.state.total);
 
     this.setState({
-        next_key: rand,
-        movies: [this.state.movies[1], data[rand]],
-        movie_data: data
+      total: this.state.total,
+      movie: this.state.movie_data[rand],
+      movie_data: this.state.movie_data
     });
   },
 
-  initMediaElementPlayer: function() {
+  initPlayer: function() {
     var me = this;
 
     $('video')[0].addEventListener('loadeddata', function (){
@@ -75,13 +59,13 @@ App.VideoComponent = React.createClass({displayName: "VideoComponent",
   render: function () {
     return (
       React.createElement("video", {id: "video", width: "640", height: "640", controls: true, autoplay: true, 
-        type: "video/mp4", src: this.state.movies[0].url})
+          type: "video/mp4", src: this.state.movie.url})
     );
   }
 });
 
 React.render(
-  React.createElement(App.VideoComponent, {total: Info.total, date: Info.date}),
+  React.createElement(App.VideoComponent, null),
   document.getElementById('video-container')
 );
 

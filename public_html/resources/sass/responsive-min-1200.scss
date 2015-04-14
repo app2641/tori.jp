@@ -1,0 +1,27 @@
+div#left-container img {
+  position: fixed;
+  top: -20%;
+  left: -13%;
+  max-height: 950px;
+}
+
+div#center-container {
+  img {
+    display: block;
+    max-height: 480px;
+    margin: auto auto;
+    vertical-align: middle;
+    height: 100%;
+  }
+
+  vertical-align: middle;
+  height: 100%;
+}
+
+div#right-container img {
+  position: fixed;
+  top: -8%;
+  right: 2%;
+  max-height: 800px;
+}
+

@@ -3,12 +3,11 @@ html, body {
   margin: 0;
   padding: 0;
 
+  height: 100%;
   min-height: 100%;
 }
 
 body {
-  height: 100%;
-
   background-image: url('/resources/images/material/bg.png');
   background-repeat: no-repeat;
   background-position: center center;
@@ -19,6 +18,10 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
+  div#content-container {
+    height: 100%;
+  }
 }
 
 div#video-container {

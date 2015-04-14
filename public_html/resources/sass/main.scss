@@ -8,6 +8,7 @@ html, body {
 }
 
 body {
+  background-color: #6496A5;
   background-image: url('/resources/images/material/bg.png');
   background-repeat: no-repeat;
   background-position: center center;
@@ -21,6 +22,31 @@ body {
 
   div#content-container {
     height: 100%;
+
+    div#center-container {
+      height: 100%;
+
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        max-width: 100%;
+        max-height: 550px;
+      }
+    }
+
+    div#left-container img {
+      position: fixed;
+      max-height: 950px;
+    }
+
+    div#right-container img {
+      position: fixed;
+      max-height: 800px;
+    }
   }
 }
 

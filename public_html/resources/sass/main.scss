@@ -1,0 +1,64 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background-color: #6496A5;
+  background-image: url('/resources/images/material/bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
+
+  /* css3 */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  div#content-container {
+    height: 100%;
+
+    div#center-container {
+      height: 100%;
+
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        max-width: 100%;
+        max-height: 550px;
+      }
+    }
+
+    div#left-container img {
+      position: fixed;
+      max-height: 950px;
+    }
+
+    div#right-container img {
+      position: fixed;
+      max-height: 800px;
+    }
+  }
+}
+
+div#video-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  div#video {
+
+  }
+}
+

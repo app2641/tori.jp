@@ -1,4 +1,4 @@
-[とり.jp](http://とり.jp) [![Build Status](https://travis-ci.org/app2641/tori.jp.svg?branch=master)](https://travis-ci.org/app2641/tori.jp) [![Coverage Status](https://coveralls.io/repos/app2641/tori.jp/badge.svg)](https://coveralls.io/r/app2641/tori.jp) ![version-0.1.2](https://img.shields.io/badge/release-v0.1.2-blue.svg)
+[とり.jp](http://xn--o9j8c.jp) [![Build Status](https://travis-ci.org/app2641/tori.jp.svg?branch=master)](https://travis-ci.org/app2641/tori.jp) [![Coverage Status](https://coveralls.io/repos/app2641/tori.jp/badge.svg)](https://coveralls.io/r/app2641/tori.jp) ![version-0.1.2](https://img.shields.io/badge/release-v0.1.2-blue.svg)
 ===
 
 # Description

@@ -1,0 +1,12 @@
+---
+config:
+  bucket: xn--o9j8c.jp
+  files:
+    - index.html
+    - resources/build/app.js
+    - resources/css
+    - resources/images
+    - resources/lib/bower/react/react.min.js
+    - resources/lib/bower/jquery/dist/jquery.min.js
+    - resources/lib/bower/jquery/dist/jquery.min.map
+

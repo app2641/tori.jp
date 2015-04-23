@@ -49,7 +49,7 @@ App.VideoComponent = React.createClass({displayName: "VideoComponent",
     var me = this;
 
     $('video')[0].addEventListener('loadeddata', function (){
-      this.play()
+      this.play();
     });
     $('video')[0].addEventListener('ended', function () {
       me.loadNextMovie();
@@ -58,7 +58,7 @@ App.VideoComponent = React.createClass({displayName: "VideoComponent",
 
   render: function () {
     return (
-      React.createElement("video", {id: "video", width: "640", height: "640", controls: true, autoplay: true, 
+      React.createElement("video", {id: "video-player", controls: true, autoplay: true, 
           type: "video/mp4", src: this.state.movie.url})
     );
   }

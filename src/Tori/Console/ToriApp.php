@@ -20,6 +20,7 @@ class ToriApp extends Application
 
         $this->add(new Command\Generate());
         $this->add(new Command\Compass());
+        $this->add(new Command\Sync());
         /* Tori Commands List */
     }
 }

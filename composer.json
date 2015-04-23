@@ -16,6 +16,7 @@
         "app2641/aws-client-manager": "*",
         "aws/aws-sdk-php": "*",
         "satooshi/php-coveralls": "*",
-        "symfony/console": "2.*"
+        "symfony/console": "2.*",
+        "symfony/yaml": "2.*"
     }
 }

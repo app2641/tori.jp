@@ -17,6 +17,6 @@
   ],
   "dependencies": {
     "react": "~0.13.1",
-    "mediaelement": "~2.16.4"
+    "jquery": "~2.1.3"
   }
 }

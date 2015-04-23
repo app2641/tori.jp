@@ -22,8 +22,8 @@
         <whitelist>
             <directory suffix=".php">src</directory>
             <exclude>
-                <directory>src/Tori/Commands</directory>
                 <file>src/Bootstrap.php</file>
+                <file>src/Tori/Mock/MockTestCase.php</file>
             </exclude>
         </whitelist>
     </filter>

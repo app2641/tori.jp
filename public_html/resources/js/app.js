@@ -24,7 +24,6 @@ App.VideoComponent = React.createClass({
           movie_data: data.movies
         });
 
-        // プレイヤーの初期化
         this.initPlayer();
       },
       context: this

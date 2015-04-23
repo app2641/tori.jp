@@ -57,8 +57,16 @@ div#video-container {
   left: 0;
   right: 0;
 
-  div#video {
-
+  video#video-player {
+    position: absolute;
+    top: -8.1%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-height: 347px;
+    z-index: 10;
+    opacity: 0.8;
   }
 }
 

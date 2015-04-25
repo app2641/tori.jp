@@ -1,0 +1,22 @@
+{
+    "name": "tori.jp",
+    "description":" ",
+    "keywords":[
+    ],
+    "config":{
+        "bin-dir": "bin"
+    },
+    "license": "BSD-3-Clause",
+    "autoload":{
+        "psr-4":{
+            "Tori\\": "src/"
+        }
+    },
+    "require": {
+        "app2641/aws-client-manager": "*",
+        "aws/aws-sdk-php": "*",
+        "satooshi/php-coveralls": "*",
+        "symfony/console": "2.*",
+        "symfony/yaml": "2.*"
+    }
+}

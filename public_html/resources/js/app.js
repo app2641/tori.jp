@@ -2,7 +2,6 @@
 var App = {};
 App.VideoComponent = React.createClass({
   propTypes: {
-    id: React.PropTypes.string.isRequired,
     style: React.PropTypes.shape({
       display: React.PropTypes.string.isRequired
     }),
@@ -12,11 +11,31 @@ App.VideoComponent = React.createClass({
   render: function () {
     return (
       <video
-        id={this.props.id}
         className="video-player"
         style={this.props.style}
         type="video/mp4"
         src={this.props.src}
+        controls
+      />
+    );
+  }
+});
+
+App.SpeakerComponent = React.createClass({
+  propTypes: {
+    handle: React.PropTypes.func.isRequired,
+    muted: React.PropTypes.bool.isRequired
+  },
+
+  render: function () {
+    var img = (this.props.muted) ? 'vol_off.png': 'vol_on.png';
+    var src = '/resources/images/'+img;
+
+    return (
+      <img
+        id="speaker"
+        src={src}
+        onClick={this.props.handle}
       />
     );
   }
@@ -31,7 +50,8 @@ App.VideoWraperComponent = React.createClass({
       display_id: 'green',
       hide_id: 'blue',
       green_movie: {user: '', caption: '', url: ''},
-      blue_movie: {user: '', caption: '', url: ''}
+      blue_movie: {user: '', caption: '', url: ''},
+      muted: false
     };
   },
 
@@ -57,17 +77,17 @@ App.VideoWraperComponent = React.createClass({
   },
 
   initEventHandler: function () {
-    this.getDisplayVideo().on('loadeddata', this.onLoadedDataHandler);
-    this.getDisplayVideo().on('ended', this.onEndedHandler);
-    this.getHideVideo().on('ended', this.onEndedHandler);
+    this.getDisplayVideo().addEventListener('loadeddata', this.onLoadedDataHandler);
+    this.getDisplayVideo().addEventListener('ended', this.onEndedHandler);
+    this.getHideVideo().addEventListener('ended', this.onEndedHandler);
   },
 
   getDisplayVideo: function () {
-    return $('video[id="'+this.state.display_id+'"]');
+    return React.findDOMNode(this.refs[this.state.display_id]);
   },
 
   getHideVideo: function () {
-    return $('video[id="'+this.state.hide_id+'"]');
+    return React.findDOMNode(this.refs[this.state.hide_id]);
   },
 
   onLoadedDataHandler: function () {
@@ -91,7 +111,7 @@ App.VideoWraperComponent = React.createClass({
   },
 
   destroyPlayerEvents: function () {
-    this.getDisplayVideo()[0].onloadeddata = null;
+    this.getDisplayVideo().onloadeddata = null;
   },
 
   reverseStyle: function () {
@@ -109,7 +129,7 @@ App.VideoWraperComponent = React.createClass({
   },
 
   playVideo: function () {
-    this.getDisplayVideo()[0].play();
+    this.getDisplayVideo().play();
   },
 
   updateRandomNum: function () {
@@ -129,18 +149,32 @@ App.VideoWraperComponent = React.createClass({
     this.setState(state);
   },
 
+  handleMute: function () {
+    var muted = !this.state.muted;
+    React.findDOMNode(this.refs[this.state.display_id]).muted = muted;
+    React.findDOMNode(this.refs[this.state.hide_id]).muted = muted;
+
+    this.setState({
+      muted: muted
+    });
+  },
+
   render: function () {
     return (
       <div id="video-wraper">
         <App.VideoComponent
-          id="green"
+          ref="green"
           style={this.state.style.green}
           src={this.state.green_movie.url}
         />
         <App.VideoComponent
-          id="blue"
+          ref="blue"
           style={this.state.style.blue}
           src={this.state.blue_movie.url}
+        />
+        <App.SpeakerComponent
+          handle={this.handleMute}
+          muted={this.state.muted}
         />
       </div>
     );

@@ -1,4 +1,6 @@
 
+@import 'modules/common';
+
 html, body {
   margin: 0;
   padding: 0;
@@ -26,15 +28,28 @@ body {
     div#center-container {
       height: 100%;
 
-      img {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
+      img#tablet {
+        @include center_layout;
         margin: auto;
         max-width: 100%;
-        max-height: 550px;
+      }
+
+      div#video-container {
+        @include center_layout;
+
+        video.video-player {
+          @include center_layout;
+          top: -8.1%;
+          margin: auto;
+          z-index: 10;
+          opacity: 0.9;
+
+          background-color: black;
+          min-height: 346px;
+          max-height: 347px;
+          min-width: 346px;
+          max-width: 347px;
+        }
       }
     }
 
@@ -47,30 +62,6 @@ body {
       position: fixed;
       max-height: 800px;
     }
-  }
-}
-
-div#video-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  video.video-player {
-    position: absolute;
-    top: -8.1%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    z-index: 10;
-    opacity: 0.9;
-
-    min-height: 346px;
-    max-height: 347px;
-    min-width: 346px;
-    max-width: 347px;
   }
 }
 

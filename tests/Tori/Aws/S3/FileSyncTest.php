@@ -39,12 +39,27 @@ class FileSyncTest extends MockTestCase
 
     /**
      * @test
-     * @group filesync-execute
+     * @group filesync-all
      * @group filesync
      **/
-    public function 正常な処理 ()
+    public function すべてのファイルを同期する場合 ()
     {
         $this->sync->setS3Client($this->getS3Mock());
+        $result = $this->sync->execute();
+
+        $this->assertTrue($result);
+    }
+
+
+    /**
+     * @test
+     * @group filesync-file
+     * @group filesync
+     **/
+    public function 個別のファイルを同期する場合 ()
+    {
+        $this->sync->setS3Client($this->getS3Mock());
+        $this->sync->setFilePath('public_html/resources/images/');
         $result = $this->sync->execute();
 
         $this->assertTrue($result);

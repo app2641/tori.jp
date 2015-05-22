@@ -23,6 +23,12 @@ class FileSync
      **/
     private $conf;
 
+
+    /**
+     * @var string
+     **/
+    private $file_path;
+
     /**
      * S3Client
      **/
@@ -47,6 +53,17 @@ class FileSync
         $this->dry_run = $dry_run;
     }
 
+
+    /**
+     * @param  string $file_path
+     * @return void
+     **/
+    public function setFilePath ($file_path)
+    {
+        $file_path = preg_replace('/\/$/', '', ROOT.'/'.$file_path);
+        $this->file_path = $file_path;
+    }
+
     /**
      * @param  S3Client $client
      * @return void
@@ -64,15 +81,13 @@ class FileSync
         if ($this->dry_run) return false;
 
         try {
-            foreach ($this->conf['config']['files'] as $file) {
-                $path = ROOT.'/public_html/'.$file;
-                if (! file_exists($path)) throw new \Exception('not found '.$file);
-
-                if (is_dir($path)) {
-                    $this->_parseDirecotry($path);
-                } else {
-                    $this->_upload($file);
+            if (is_null($this->file_path)) {
+                foreach ($this->conf['config']['files'] as $file) {
+                    $file_path = ROOT.'/public_html/'.$file;
+                    $this->_parse($file_path);
                 }
+            } else {
+                $this->_parse($this->file_path);
             }
 
         } catch (\Exception $e) {
@@ -84,33 +99,43 @@ class FileSync
 
 
     /**
-     * @param  string $path
+     * @param  string $file_path
      * @return void
      **/
-    private function _parseDirecotry ($path)
+    private function _parse ($file_path)
     {
-        foreach (glob($path.'/*') as $file) {
-            $path = ROOT.'/public_html/'.$file;
+        if (! file_exists($file_path)) throw new \Exception('not found '.$file_path);
 
-            if (is_dir($path)) {
-                $this->_parseDirecotry($path);
-            } else {
-                $this->_upload(str_replace(ROOT.'/public_html/', '', $file));
-            }
+        if (is_dir($file_path)) {
+            $this->_parseDirecotry($file_path);
+        } else {
+            $this->_upload($file_path);
         }
     }
 
 
     /**
-     * @param  string $file
+     * @param  string $path
      * @return void
      **/
-    private function _upload ($file)
+    private function _parseDirecotry ($path)
+    {
+        foreach (glob($path.'/*') as $file_path) {
+            $this->_parse($file_path);
+        }
+    }
+
+
+    /**
+     * @param  string $file_path
+     * @return void
+     **/
+    private function _upload ($file_path)
     {
         $this->client->putObject([
             'Bucket' => $this->conf['config']['bucket'],
-            'Key'  => $file,
-            'SourceFile' => ROOT.'/public_html/'.$file
+            'Key' => $file_path,
+            'SourceFile' => $file_path
         ]);
     }
 }

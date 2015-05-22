@@ -39,28 +39,31 @@ body {
 
         video.video-player {
           @include center_layout;
-          top: -8.1%;
           margin: auto;
           z-index: 10;
-          opacity: 0.9;
+          opacity: 0.5;
 
           background-color: black;
-          min-height: 346px;
-          max-height: 347px;
-          min-width: 346px;
-          max-width: 347px;
+        }
+
+        img#speaker {
+          @include center_layout;
+          cursor: pointer;
+          margin: auto;
+
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
     }
 
     div#left-container img {
       position: fixed;
-      max-height: 950px;
     }
 
     div#right-container img {
       position: fixed;
-      max-height: 800px;
     }
   }
 }

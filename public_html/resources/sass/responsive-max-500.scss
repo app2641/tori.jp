@@ -1,14 +1,41 @@
 div#left-container img {
-  position: fixed;
-  top: -12%;
-  left: -140%;
-  max-height: 950px;
+  height: 1100px;
+}
+
+div#center-container {
+  img#tablet {
+    height: 450px;
+  }
+
+  div#video-container {
+    video.video-player {
+      top: -51px !important;
+      $size: 284px;
+      height: $size;
+      width: $size;
+    }
+
+    img#speaker {
+      $size: 19px;
+      top: -362px !important;
+      left: 220px !important;
+      width: $size;
+      height: $size;
+    }
+  }
 }
 
 div#right-container img {
-  position: fixed;
-  top: -5%;
-  right: -100%;
-  max-height: 800px;
+  height: 800px;
+}
+
+@media (max-width:500px) {
+  div#left-container img {
+    display: none;
+  }
+
+  div#right-container img {
+    display: none;
+  }
 }
 

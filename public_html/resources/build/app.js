@@ -173,7 +173,6 @@ App.VideoWraperComponent = React.createClass({displayName: "VideoWraperComponent
           src: this.state.blue_movie.url}
         ), 
         React.createElement(App.SpeakerComponent, {
-          ref: "speaker", 
           handle: this.handleMute, 
           muted: this.state.muted}
         )

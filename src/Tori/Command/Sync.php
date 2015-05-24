@@ -24,11 +24,11 @@ class Sync extends Command
             ->setDescription('public_html以下のファイルをS3へ同期する');
 
         // 引数の記載
-        // $this->addArgument(
-            // 'dry_run',
-            // InputArgument::OPTIONAL,
-            // 'モックによるアップロードを有効する'
-        // );
+        $this->addArgument(
+            'file_path',
+            InputArgument::OPTIONAL,
+            '個別でアップロードしたいファイルまたはディレクトリ'
+        );
 
         // オプションの記載
         $this->addOption(
@@ -47,11 +47,13 @@ class Sync extends Command
      **/
     protected function execute (InputInterface $input, OutputInterface $output)
     {
-        $dry_run = $input->getOption('dry-run');
+        $dry_run   = $input->getOption('dry-run');
+        $file_path = $input->getArgument('file_path');
 
         $sync = new FileSync();
         $sync->enableDryRun($dry_run);
         $sync->setS3Client(Acm::getS3());
+        $sync->setFilePath($file_path);
         $sync->execute();
     }
 }

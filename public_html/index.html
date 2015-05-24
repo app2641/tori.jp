@@ -14,7 +14,7 @@
     <link rel="stylesheet" media="(min-width:700px)" href="/resources/css/responsive-min-700.css" />
     <link rel="stylesheet" media="(min-width:1000px)" href="/resources/css/responsive-min-1000.css" />
 
-    <script type="text/javascript" src="/resources/lib/bower/react/react.min.js"></script>
+    <script type="text/javascript" src="/resources/lib/bower/react/react.js"></script>
     <script type="text/javascript" src="/resources/lib/bower/jquery/dist/jquery.min.js"></script>
   </head>
   <body>
@@ -23,17 +23,16 @@
         <img src="/resources/images/left.png" />
       </div>
       <div id="center-container">
-        <img src="/resources/images/ipad.png" />
+        <img id="tablet" src="/resources/images/ipad.png" />
+        <div id="video-container" />
+          <div id="video-wraper">
+          </div>
+        </div>
       </div>
       <div id="right-container">
         <img src="/resources/images/right.png" />
       </div>
 
-      <div id="video-container" />
-        <div id="video-wraper">
-          <video id="video-player"></video>
-      </div>
-      </div>
     </div>
   </body>
   <script type="text/javascript" src="/resources/build/app.js"></script>

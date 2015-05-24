@@ -34,17 +34,34 @@ class SyncTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group sync-execute
+     * @group sync-all
      * @group sync
      **/
-    public function 正常な処理 ()
+    public function すべてのファイルを同期する場合 ()
     {
         $command = $this->app->find('sync');
         $tester  = new CommandTester($command);
-        $tester->execute(array(
+        $tester->execute([
             'command'  => $command->getName(),
             '--dry-run' => true
-        ));
+        ]);
+    }
+
+
+    /**
+     * @test
+     * @group sync-file
+     * @group sync
+     **/
+    public function 個別で同期する場合 ()
+    {
+        $command = $this->app->find('sync');
+        $tester  = new CommandTester($command);
+        $tester->execute([
+            'command' => $command->getName(),
+            'file_path' => 'public_html/resources/images/',
+            '--dry-run' => true
+        ]);
     }
 }
 

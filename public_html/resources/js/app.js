@@ -1,4 +1,7 @@
 
+var React   = require('react');
+var request = require('superagent');
+
 var App = {};
 App.VideoComponent = React.createClass({
   propTypes: {

@@ -53,7 +53,10 @@ class Sync extends Command
         $sync = new FileSync();
         $sync->enableDryRun($dry_run);
         $sync->setS3Client(Acm::getS3());
-        $sync->setFilePath($file_path);
+
+        if (! is_null($file_path)) {
+            $sync->setFilePath($file_path);
+        }
         $sync->execute();
     }
 }

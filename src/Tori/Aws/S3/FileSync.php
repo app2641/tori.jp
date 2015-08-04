@@ -132,9 +132,11 @@ class FileSync
      **/
     private function _upload ($file_path)
     {
+        $to_path = str_replace(ROOT.'/public_html/', '', $file_path);
+
         $this->client->putObject([
             'Bucket' => $this->conf['config']['bucket'],
-            'Key' => $file_path,
+            'Key' => $to_path,
             'SourceFile' => $file_path
         ]);
     }

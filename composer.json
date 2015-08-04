@@ -14,9 +14,9 @@
     },
     "require": {
         "app2641/aws-client-manager": "*",
-        "aws/aws-sdk-php": "*",
+        "aws/aws-sdk-php": "2.*",
         "satooshi/php-coveralls": "*",
-        "symfony/console": "2.*",
-        "symfony/yaml": "2.*"
+        "symfony/console": "2.6.*",
+        "symfony/yaml": "2.6.*"
     }
 }

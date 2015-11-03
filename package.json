@@ -1,21 +1,20 @@
 {
   "name": "tori",
   "version": "0.0.1",
-  "description": "",
+  "author": "app2641",
   "devDependencies": {
-    "browserify": "10.2.*",
-    "coffee-script": "^1.8.0",
+    "babelify": "^6.1.3",
+    "browserify": "^12.0.1",
+    "coffee-script": "^1.10.0",
     "del": "^2.0.2",
     "glob": "^5.0.15",
-    "gulp": "^3.8.0",
-    "gulp-coffee": "^2.2.0",
-    "gulp-concat": "^2.4.1",
-    "gulp-sass": "^1.1.0",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-sass": "^2.1.0",
     "gulp-uglify": "^1.0.1",
-    "react": "0.13.*",
-    "reactify": "1.1.*",
-    "redux": "*",
-    "superagent": "1.2.*",
+    "react": "^0.14.2",
+    "redux": "^3.0.4",
+    "superagent": "^1.4.0",
     "vinyl-source-stream": "^1.1.0"
   }
 }

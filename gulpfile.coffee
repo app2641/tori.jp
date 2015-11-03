@@ -1,9 +1,7 @@
+babelify     = require 'babelify'
 browserify   = require 'browserify'
-coffee       = require 'gulp-coffee'
 del          = require 'del'
-glob         = require 'glob'
 gulp         = require 'gulp'
-reactify     = require 'reactify'
 sass         = require 'gulp-sass'
 source       = require 'vinyl-source-stream'
 
@@ -12,12 +10,13 @@ paths =
   css: 'src/css/**/*.scss'
 
 gulp.task 'browserify', ->
-  browserify({
-    entries: [glob.sync(paths.js)],
-    transform: [reactify]
-  }).bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('public_html/resources/js'))
+  browserify('./src/js/app.jsx', {debug: true})
+    .transform(babelify)
+    .bundle()
+    .on 'error', (err) ->
+      console.log('Error : ' + err.message)
+    .pipe(source('public_html/resources/js/app.js'))
+    .pipe(gulp.dest('./'))
 
 gulp.task 'sass', ->
   gulp.src(paths.css)

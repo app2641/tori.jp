@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "start": "watchify -t reactify public_html/resources/js//app.jsx -o public_html/resources/dest/app.js -v"
+    "start": "watchify -t reactify public_html/resources/js/app.jsx -o public_html/resources/dest/app.js -v"
   },
   "devDependencies": {
     "fluxxor": "1.5.*",

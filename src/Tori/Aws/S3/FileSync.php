@@ -104,8 +104,6 @@ class FileSync
      **/
     private function _parse ($file_path)
     {
-        if (! file_exists($file_path)) throw new \Exception('not found '.$file_path);
-
         if (is_dir($file_path)) {
             $this->_parseDirecotry($file_path);
         } else {

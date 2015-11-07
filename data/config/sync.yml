@@ -3,7 +3,7 @@ config:
   bucket: xn--o9j8c.jp
   files:
     - index.html
-    - resources/dest/app.js
+    - resources/js
     - resources/css
     - resources/images
 

@@ -82,9 +82,13 @@ class FileSync
 
         try {
             if (is_null($this->file_path)) {
-                foreach ($this->conf['config']['files'] as $file) {
-                    $file_path = ROOT.'/public_html/'.$file;
-                    $this->_parse($file_path);
+                if (isset($this->con['config'])) {
+                    foreach ($this->conf['config']['files'] as $file) {
+                        $file_path = ROOT.'/public_html/'.$file;
+                        $this->_parse($file_path);
+                    }
+                } else {
+                    echo 'config setting is invalid'.PHP_EOL;
                 }
             } else {
                 $this->_parse($this->file_path);
@@ -132,11 +136,15 @@ class FileSync
     {
         $to_path = str_replace(ROOT.'/public_html/', '', $file_path);
 
-        $this->client->putObject([
-            'Bucket' => $this->conf['config']['bucket'],
-            'Key' => $to_path,
-            'SourceFile' => $file_path
-        ]);
+        if (isset($this->conf['config'])) {
+            $this->client->putObject([
+                'Bucket' => $this->conf['config']['bucket'],
+                'Key' => $to_path,
+                'SourceFile' => $file_path
+            ]);
+        } else {
+            echo 'config setting is invalid'.PHP_EOL;
+        }
     }
 }
 

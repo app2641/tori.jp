@@ -65,5 +65,30 @@ body {
       position: fixed;
     }
   }
+
+  div#logo-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #6496A5;
+    z-index: 20;
+  }
+
+  div#logo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+
+    img#logo-image {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-top: -62.5px;
+      margin-left: -155px;
+    }
+  }
 }
 

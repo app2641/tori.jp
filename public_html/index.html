@@ -28,14 +28,18 @@
       </div>
       <div id="center-container">
         <img id="tablet" src="/resources/images/ipad.png" />
-        <div id="video-container" />
+        <div id="video-container">
+          <video class="video-player" type="video/mp4" controls></video>
+          <video class="video-player" type="video/mp4" style="display:none;" controls></video>
+          <img id="speaker" src="/resources/images/vol_on.png" />
+        </div>
       </div>
       <div id="right-container">
         <img src="/resources/images/right.png" />
       </div>
     </div>
-    <div id="logo-mask"></div>
-    <div id="logo-container">
+    <div id="logo-mask" class="mask-component"></div>
+    <div id="logo-container" class="mask-component">
       <img id="logo-image" src="/resources/images/logo.gif" />
     </div>
   </body>

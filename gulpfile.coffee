@@ -6,11 +6,11 @@ sass         = require 'gulp-sass'
 source       = require 'vinyl-source-stream'
 
 paths = 
-  js: 'src/js/*.jsx'
+  js: 'src/js/**/*.js'
   css: 'src/css/**/*.scss'
 
 gulp.task 'browserify', ->
-  browserify('./src/js/app.jsx', {debug: true})
+  browserify('./src/js/app.js', {debug: false})
     .transform(babelify)
     .bundle()
     .on 'error', (err) ->

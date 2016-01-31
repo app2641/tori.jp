@@ -39,14 +39,7 @@ class VideoManager extends StateManager {
 
   initEventListeners () {
     let _this = this
-    // this.getVisibleVideo().get(0).addEventListener('loadeddata', () => {
-      // _this.playVideo()
-    // })
-
     let endedEvent = () => {
-      $.each(_this.videos, (i, video) => {
-        video.off('loadeddata')
-      })
       _this.reverseVisual()
       _this.playVideo()
       _this.updateInvisibleVideoSrc()
